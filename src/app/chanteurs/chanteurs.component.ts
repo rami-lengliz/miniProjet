@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Chanteur } from '../model/chanteur.model';
+import { AuthService } from '../services/auth.service';
 import { ChanteurService } from '../services/chanteur.service';
 
 @Component({
@@ -10,8 +12,10 @@ import { ChanteurService } from '../services/chanteur.service';
 export class ChanteursComponent implements OnInit {
   chanteurs: Chanteur[] = [];
 
-  constructor(private chanteurService: ChanteurService) {}
-
+  constructor(private chanteurService: ChanteurService,
+    private router:Router, 
+    public authService: AuthService) {}
+    
   ngOnInit(): void {
     this.chanteurs = this.chanteurService.listeChanteurs();
   }

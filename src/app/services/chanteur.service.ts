@@ -6,6 +6,7 @@ import { Chanteur } from '../model/chanteur.model';
   providedIn: 'root'
 })
 export class ChanteurService {
+  
 
   chanteurs: Chanteur[];
   categories: Categorie[];
@@ -13,8 +14,9 @@ export class ChanteurService {
 
   constructor() { 
     this.categories=[
+      {idHipHop:1, nomHipHop:"aaa"},
+      {idHipHop:1, nomHipHop:"bbb"},
       {idHipHop:1, nomHipHop:"gg"}
-
     ];
 
     this.chanteurs = [
@@ -24,12 +26,10 @@ export class ChanteurService {
     ];
   }
 
-  // Return the list of chanteurs
   listeChanteurs(): Chanteur[] {
     return this.chanteurs;
   }
 
-  // Add a new chanteur to the list
   ajouterChanteur(chant: Chanteur) {
     this.chanteurs.push(chant);
   }
@@ -75,6 +75,13 @@ export class ChanteurService {
               }
               });
               return this.chanteursRecherche;
+              }
+              ajouterMusic(g: Categorie) {
+                this.categories.push(g);
+                console.log(this.categories);
+              }
+              listeMusics(): Categorie[] {
+                return this.categories;
               }
         }
           

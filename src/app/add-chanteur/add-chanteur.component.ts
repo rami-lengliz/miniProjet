@@ -28,7 +28,7 @@ export class AddChanteurComponent implements OnInit {
     this.newChanteur.categorie = this.newCategorie;
     this.chanteurService.ajouterChanteur(this.newChanteur);
 
-    this.router.navigate(["/chanteurs"]);
+    this.router.navigate(['/add-chanteur']);
 
     this.message = 'Chanteur ajouté avec succès!';
   }

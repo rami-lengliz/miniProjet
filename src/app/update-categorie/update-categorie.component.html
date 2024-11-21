@@ -1,0 +1,15 @@
+<form>
+    <div>
+        <label>ID Music</label>
+        <input type="text" [(ngModel)]="music.idHipHop" name="idHipHop" class="form-control w-25">
+    </div>
+    <div>
+        <label>Nom Music</label>
+        <input type="text" [(ngModel)]="music.nomHipHop" name="nomHipHop" class="form-control"
+            placeholder="Entrez un nom de Music...">
+    </div>
+    <div class="mt-2">
+        <button type="submit" [disabled]="!music.nomHipHop" class="btn btn-success"
+            (click)="saveMusic()">{{ajout ? 'Ajouter' : 'Modifier'}}</button>
+    </div>
+</form>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/user.model';
-import { AuthService } from '../services/chanteur.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
 
   user = new User();
-  err : number = 0;
+  err  = 0;
   message : string ="login ou mot de passe erronés..";
 
   constructor(private authService : AuthService,
@@ -23,25 +23,22 @@ export class LoginComponent implements OnInit {
 
   onLoggedin()
     {
-      this.authService.login(this.user).subscribe({
-        next: (data) => {
-          let jwToken = data.headers.get('Authorization')!;
-         
-          this.authService.saveToken(jwToken);
-           this.router.navigate(['/']); 
-        },
-        error: (err: any) => {
-          this.err = 1; 
-          if (err.error.errorCause=="disabled")
-               this.message = "L'utilisateur est désactivé !";
+      console.log(this.user);
+ let isValidUser: Boolean = this.authService.SignIn(this.user);
+if (isValidUser)
+this.router.navigate(['/']);
+else
+alert('Login ou mot de passe incorrecte!');
+this.err=1;
+}
 
-      
         }
-        });
+        
+      
         
         
-    }
+    
 
     
 
-}
+

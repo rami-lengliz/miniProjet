@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <app-update-categorie 
+            [music]="updatedmusic"
+            (musicUpdated)= "musicUpdated($event)"
+            [ajout]="ajout">
+        </app-update-categorie>
+    </div>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom music </th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let m of music">
+                    <tr>
+                        <td>{{m.idHipHop}}</td>
+                        <td>{{m.nomHipHop}}</td>
+                        <td><a class="btn btn-success" (click)="editMusic(m)">Editer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

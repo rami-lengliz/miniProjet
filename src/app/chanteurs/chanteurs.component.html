@@ -19,8 +19,8 @@
                         <td>{{ chanteur.datenais | date: 'dd/MM/yyyy' }}</td>
                         <td>{{ chanteur.categorie.nomHipHop }}</td>
 
-                        <td><a class="btn btn-danger" (click)="supprimerChanteur(chanteur)">Supprimer</a></td> <!-- Fixed Typo -->
-                        <td><a class="btn btn-success" [routerLink]="['/updateChanteur',chanteur.idChanteur]">Modifier</a></td>
+                        <td><a  *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerChanteur(chanteur)">Supprimer</a></td> <!-- Fixed Typo -->
+                        <td><a  *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateChanteur',chanteur.idChanteur]">Modifier</a></td>
 
                     </tr>
                 </tbody>
