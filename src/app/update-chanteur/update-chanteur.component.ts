@@ -1,7 +1,7 @@
+import { Categorie } from './../model/categorie.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chanteur } from '../model/chanteur.model';
-import { Categorie } from '../model/categorie.model'; // Ensure this import matches your model's location
 import { ChanteurService } from '../services/chanteur.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ChanteurService } from '../services/chanteur.service';
 })
 export class UpdateChanteurComponent implements OnInit {
   currentChanteur = new Chanteur();
-  categories!: Categorie[]; 
+  categories: Categorie[] = [];
   updatedHipHopId!: number;
 
   constructor(
@@ -21,13 +21,35 @@ export class UpdateChanteurComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currentChanteur = this.chanteurService.consulterChanteur(this.activatedRoute.snapshot.params['id']);
-    this.categories = this.chanteurService.listeCategories();
-    this.updatedHipHopId = this.currentChanteur.categorie?.idHipHop; }
+    this.chanteurService.listeCategories().subscribe(cats => {this.categories = cats._embedded.categories;
+console.log(cats);
+});
 
-  updateChanteur() {
-    this.currentChanteur.categorie = this.chanteurService.consulterCategorie(this.updatedHipHopId);
-    this.chanteurService.updateChanteur(this.currentChanteur);
-    this.router.navigate(['chanteurs']);
+    this.chanteurService.consulterChanteur(this.activatedRoute.snapshot.params['id']).
+    subscribe( prod =>{ this.currentChanteur = prod; 
+      this.updatedHipHopId =this.currentChanteur.categorie.idHipHop;
+    } ) ;
+   
+   }
+
+   updateChanteur() {
+    if (!this.categories || this.categories.length === 0) {
+      console.error('Categories are not loaded yet.');
+      return;
+    }
+  
+    const selectedCategory = this.categories.find(cat => cat.idHipHop == this.updatedHipHopId);
+  
+    if (!selectedCategory) {
+      console.error('Category with idHipHop', this.updatedHipHopId, 'not found.');
+      return;
+    }
+  
+    this.currentChanteur.categorie = selectedCategory;
+  
+    this.chanteurService.updateChanteur(this.currentChanteur).subscribe(() => {
+      this.router.navigate(['chanteurs']);
+    });
   }
+  
 }

@@ -17,8 +17,8 @@ export class RechercheParCategorieComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize categories and chanteurs
-    this.categories = this.chanteurService.listeCategories();
-    this.chanteurs = this.chanteurService.listeChanteurs();
+    //this.categories = this.chanteurService.listeCategories();
+   // this.chanteurs = this.chanteurService.listeChanteur();
   }
 
   onChange() {
@@ -28,11 +28,11 @@ export class RechercheParCategorieComponent implements OnInit {
     }
   }
 
-  supprimerChanteur(p: Chanteur) {
-    let conf = confirm("Etes-vous sûr ?");
+  supprimerChanteur(chant: Chanteur) {
+    /*let conf = confirm("Etes-vous sûr ?");
     if (conf) {
       this.chanteurService.supprimerChanteur(p);
       this.chanteurs = this.chanteurService.rechercherParCategorie(this.IdCategorie);
-    }
+    }*/
   }
 }

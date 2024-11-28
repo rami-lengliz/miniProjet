@@ -6,9 +6,10 @@
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
-                        <th>Prix</th>
+                        <th>Prix Concert</th>
                         <th>Date de naissance</th>
-                        <th>categories</th> <!-- Add Action Column -->
+                        <th>Music</th>
+                        <th>Actions</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -17,11 +18,16 @@
                         <td>{{ chanteur.nomChanteur }}</td>
                         <td>{{ chanteur.prixChanteur }}</td>
                         <td>{{ chanteur.datenais | date: 'dd/MM/yyyy' }}</td>
-                        <td>{{ chanteur.categorie.nomHipHop }}</td>
+                        <td>{{ chanteur.categorie?.nomHipHop }}</td>
 
-                        <td><a  *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerChanteur(chanteur)">Supprimer</a></td> <!-- Fixed Typo -->
-                        <td><a  *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateChanteur',chanteur.idChanteur]">Modifier</a></td>
-
+                        <td>
+                            <a *ngIf="authService.isAdmin()" 
+                               class="btn btn-danger" 
+                               (click)="supprimerChanteur(chanteur)">Supprimer</a>
+                            <a *ngIf="authService.isAdmin()" 
+                               class="btn btn-success" 
+                               [routerLink]="['/updateChanteur', chanteur.idChanteur]">Modifier</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

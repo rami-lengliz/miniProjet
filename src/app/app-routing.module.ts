@@ -7,12 +7,12 @@ import { LoginComponent } from './login/login.component';
 import { AddChanteurComponent } from './add-chanteur/add-chanteur.component';
 import { BindingComponent } from './binding/binding.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { ProduitGuard } from './chanteur.guard';
+import { ChanteurGuard } from './chanteur.guard';
 import { ListeCategoriesComponent } from './liste-categories/liste-categories.component';
 
 
 const routes: Routes = [{path: "chanteurs", component : ChanteursComponent},
-{ path: 'add-chanteur', component: AddChanteurComponent, canActivate:[ProduitGuard] },
+{ path: 'add-chanteur', component: AddChanteurComponent, canActivate:[ChanteurGuard] },
 { path: 'test', component: BindingComponent },
 
 {path: "updateChanteur/:id", component: UpdateChanteurComponent},

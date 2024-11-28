@@ -5,7 +5,7 @@
   
     <!-- Form submission handling with ngSubmit -->
     <form (ngSubmit)="addChanteur()">
-      <div class="col-sm-2 col-md-2 col-lg-2">
+      <div hidden class="col-sm-2 col-md-2 col-lg-2">
         <label>ID chanteur</label>
         <input type="text" [(ngModel)]="newChanteur.idChanteur" name="idChanteur" class="form-control">
       </div>
@@ -16,7 +16,7 @@
       </div>
   
       <div class="col-sm-2 col-md-2 col-lg-2">
-        <label>Prix Chanteur</label>
+        <label>Prix Concert</label>
         <input type="number" [(ngModel)]="newChanteur.prixChanteur" name="prixChanteur" class="form-control">
       </div>
   
